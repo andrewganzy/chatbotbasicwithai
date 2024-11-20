@@ -1,0 +1,80 @@
+[
+  {
+    "type": "company_info",
+    "name": "CCwithAI",
+    "established": "2023",
+    "description": "We're an AI Agency specializing in transforming businesses through innovative AI solutions.",
+    "operating_hours": {
+      "weekdays": "Monday to Friday: 9:00 AM - 5:30 PM",
+      "saturday": "10:00 AM - 1:00 PM",
+      "sunday": "Closed",
+      "support": "24/7 mobile support for existing clients"
+    }
+  },
+  {
+    "type": "conversation_flow",
+    "initial_responses": {
+      "services_inquiry": "We provide innovative AI solutions to help businesses like yours grow and succeed. Could you tell me a bit about your business? This will help me explain how our AI services can specifically benefit you.",
+      "general_inquiry": "I'd be happy to help! To provide you with the most relevant information, could you tell me about your business and what challenges you're looking to solve?"
+    },
+    "pricing_responses": {
+      "initial": "Our AI chatbots start at £499, which includes setup and 2 months of expert training. To provide you with the most accurate pricing, could you tell me about your business and what you're looking to achieve with the chatbot?",
+      "followup": {
+        "e-commerce": "For e-commerce businesses, our chatbot can handle customer service, abandoned cart recovery, and product inquiries. The £499 package includes all these features plus 2 months of training to understand your products and processes. Would you like to know more about the implementation process?",
+        "general": "The £499 package includes custom development, integration with your website, and 2 months of training to make the AI an expert in your business. This ensures your chatbot can effectively handle customer queries 24/7. Would you like to schedule a call to discuss your specific requirements?",
+        "interest": "Great! The £499 package includes:\n1. Custom chatbot development\n2. Website integration\n3. 2 months of AI training\n4. 24/7 support\n\nWould you like to schedule a call to discuss your specific requirements?"
+      }
+    },
+    "business_type_responses": {
+      "e-commerce": "For e-commerce businesses, our AI solutions can help recover abandoned carts, provide 24/7 customer support, and boost sales through personalized customer interactions. Would you like to know more about any of these specific solutions?",
+      "charity": "For charities, we offer specialized AI solutions to help with donor engagement, database reactivation, and cost-effective support automation. Which of these areas interests you most?",
+      "loan_company": "For loan companies, our AI solutions can streamline customer inquiries, automate application processes, and enhance customer engagement. Would you like to learn more about any of these specific solutions?",
+      "debt_management": "For debt management companies, our AI can help with client communication, payment reminders, and support automation. Which of these areas would you like to know more about?"
+    }
+  },
+  {
+    "type": "services",
+    "core_services": [
+      {
+        "name": "AI Chatbots",
+        "description": "Custom AI chatbots for websites handling complex customer queries",
+        "pricing": "Starting at £499",
+        "timeline": "1 day setup + 2 months training",
+        "features": [
+          "24/7 customer support",
+          "Custom knowledge base",
+          "Website integration",
+          "2 months expert training"
+        ]
+      },
+      {
+        "name": "Database Reactivation",
+        "description": "AI-powered database analysis and revenue regeneration",
+        "pricing": "50/50 profit sharing"
+      },
+      {
+        "name": "Voice AI Solutions",
+        "description": "AI-powered voice systems for incoming and outgoing calls"
+      }
+    ]
+  },
+  {
+    "type": "response_guidelines",
+    "content": {
+      "greeting": "Welcome! I'm the CC With AI Assistant. How can I help transform your business with our AI solutions?",
+      "tone": "Professional, friendly, and conversational",
+      "approach": "Ask questions to understand the client's business before providing specific solutions",
+      "key_points": [
+        "Focus on understanding the client's business first",
+        "Provide targeted solutions based on business type",
+        "Keep initial responses brief and engage in dialogue",
+        "Ask follow-up questions to provide relevant information"
+      ],
+      "common_responses": {
+        "pricing_inquiry": "Our AI chatbot package starts at £499, which includes custom development, website integration, and 2 months of expert training. Would you like to know what's included in this package?",
+        "timeline_inquiry": "We can get you started quickly - typically just one day for initial setup, followed by 2 months of training to make the AI an expert in your business. Would you like to know more about the implementation process?",
+        "support_inquiry": "We provide comprehensive support, including 24/7 mobile support for our clients. How can we help you today?"
+      }
+    }
+  }
+]

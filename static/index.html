@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CC With AI - Chat</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        #chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        #messages {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        #input-container {
+            display: flex;
+            gap: 10px;
+        }
+        #message-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <h1>CC With AI Assistant</h1>
+        <div id="messages"></div>
+        <div id="input-container">
+            <input type="text" id="message-input" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const messagesDiv = document.getElementById('messages');
+        const messageInput = document.getElementById('message-input');
+
+        // Add initial message
+        addMessage("Hello! I am the CC With AI Assistant. How can I help you today?", 'assistant');
+
+        function addMessage(text, role) {
+            const messageDiv = document.createElement('div');
+            messageDiv.style.marginBottom = '10px';
+            messageDiv.style.padding = '10px';
+            messageDiv.style.borderRadius = '5px';
+            
+            if (role === 'user') {
+                messageDiv.style.backgroundColor = '#007bff';
+                messageDiv.style.color = 'white';
+                messageDiv.style.marginLeft = '20%';
+            } else {
+                messageDiv.style.backgroundColor = '#f1f1f1';
+                messageDiv.style.marginRight = '20%';
+            }
+            
+            messageDiv.textContent = text;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, 'user');
+            messageInput.value = '';
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+                
+                if (data.error) {
+                    addMessage('Error: ' + data.error, 'assistant');
+                } else {
+                    addMessage(data.response, 'assistant');
+                }
+            } catch (error) {
+                addMessage('Error: Could not connect to the server', 'assistant');
+            }
+        }
+
+        // Allow Enter key to send message
+        messageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
