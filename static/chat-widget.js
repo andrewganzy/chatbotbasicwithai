@@ -1,34 +1,56 @@
 (function() {
     console.log('Chat widget script loaded');
-    // Wait for DOM to be fully loaded
+    
     function initChatWidget() {
         console.log('Initializing chat widget');
         const chatWidget = document.createElement('div');
         chatWidget.innerHTML = `
-            <div id="cc-chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;">
-                <div id="chat-container" style="display: none; width: 350px; height: 500px; background: white; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-                    <div style="padding: 10px; background: #007bff; color: white; border-radius: 10px 10px 0 0; display: flex; justify-content: space-between;">
-                        <span>CC With AI Assistant</span>
-                        <button onclick="toggleChat()" style="background: none; border: none; color: white; cursor: pointer;">×</button>
+            <div id="cc-chat-widget" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: Arial, sans-serif;">
+                <div id="chat-container" style="display: none; width: 380px; height: 600px; background: white; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.2); overflow: hidden;">
+                    <div style="padding: 15px; background: linear-gradient(135deg, #004225, #015c34); color: white; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="https://ganzyistheone.pythonanywhere.com/static/images/logo_ccwith_ai.png" alt="CCwithAi" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+                            <span style="font-size: 18px; font-weight: bold;">CCwithAi ChatGPT</span>
+                        </div>
+                        <button onclick="toggleChat()" style="background: none; border: none; color: white; cursor: pointer; font-size: 24px; padding: 0 5px;">×</button>
                     </div>
-                    <div id="messages" style="height: 380px; overflow-y: auto; padding: 10px;"></div>
-                    <div style="padding: 10px; border-top: 1px solid #eee;">
-                        <input type="text" id="message-input" placeholder="Type your message..." style="width: 80%; padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
-                        <button onclick="sendMessage()" style="width: 15%; padding: 5px; background: #007bff; color: white; border: none; border-radius: 3px; margin-left: 5px;">→</button>
+                    <div id="messages" style="height: 480px; overflow-y: auto; padding: 20px; scroll-behavior: smooth;"></div>
+                    <div style="padding: 15px; border-top: 1px solid #eee; background: #f8f9fa;">
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" id="message-input" placeholder="Type your message..." 
+                                style="flex: 1; padding: 12px; border: 1px solid #dee2e6; border-radius: 25px; outline: none; font-size: 14px;">
+                            <button onclick="sendMessage()" 
+                                style="background: linear-gradient(135deg, #004225, #015c34); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <button onclick="toggleChat()" style="float: right; padding: 15px 25px; background: #007bff; color: white; border: none; border-radius: 25px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2);">
+                <button onclick="toggleChat()" 
+                    style="float: right; padding: 15px 25px; background: linear-gradient(135deg, #004225, #015c34); color: white; border: none; border-radius: 25px; cursor: pointer; box-shadow: 0 2px 15px rgba(0,0,0,0.1); font-size: 16px; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
                     Chat with AI
                 </button>
             </div>
         `;
-        console.log('Appending chat widget to body');
+        
         document.body.appendChild(chatWidget);
-        console.log('Chat widget appended');
 
         window.toggleChat = function() {
             const container = document.getElementById('chat-container');
-            container.style.display = container.style.display === 'none' ? 'block' : 'none';
+            const button = document.querySelector('#cc-chat-widget > button');
+            if (container.style.display === 'none') {
+                container.style.display = 'block';
+                button.style.display = 'none';
+            } else {
+                container.style.display = 'none';
+                button.style.display = 'block';
+            }
         };
 
         window.sendMessage = async function() {
@@ -58,18 +80,18 @@
         function addMessage(text, role) {
             const messagesDiv = document.getElementById('messages');
             const messageDiv = document.createElement('div');
-            messageDiv.style.marginBottom = '10px';
-            messageDiv.style.padding = '10px';
-            messageDiv.style.borderRadius = '5px';
-            
-            if (role === 'user') {
-                messageDiv.style.backgroundColor = '#007bff';
-                messageDiv.style.color = 'white';
-                messageDiv.style.marginLeft = '20%';
-            } else {
-                messageDiv.style.backgroundColor = '#f1f1f1';
-                messageDiv.style.marginRight = '20%';
-            }
+            messageDiv.style.cssText = `
+                margin-bottom: 15px;
+                padding: 12px 16px;
+                border-radius: 15px;
+                max-width: 85%;
+                word-wrap: break-word;
+                line-height: 1.4;
+                font-size: 14px;
+                ${role === 'user' ? 
+                    'background: linear-gradient(135deg, #004225, #015c34); color: white; margin-left: auto;' : 
+                    'background: #f1f3f5; color: #343a40; margin-right: auto;'}
+            `;
             
             messageDiv.textContent = text;
             messagesDiv.appendChild(messageDiv);
@@ -87,12 +109,9 @@
         });
     }
 
-    // Check if DOM is already loaded
     if (document.readyState === 'loading') {
-        console.log('DOM not ready, adding event listener');
         document.addEventListener('DOMContentLoaded', initChatWidget);
     } else {
-        console.log('DOM ready, initializing immediately');
         initChatWidget();
     }
 })();

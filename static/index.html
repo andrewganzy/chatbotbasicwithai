@@ -17,6 +17,24 @@
             border-radius: 5px;
             padding: 20px;
         }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .logo {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.2em;
+            color: #333;
+        }
         #messages {
             height: 400px;
             overflow-y: auto;
@@ -49,7 +67,10 @@
 </head>
 <body>
     <div id="chat-container">
-        <h1>CC With AI Assistant</h1>
+        <div class="header">
+            <img src="images/logo_ccwith_ai.png" alt="CCwithAI" class="logo" id="company-logo">
+            <h1>CCwithAI Assistant</h1>
+        </div>
         <div id="messages"></div>
         <div id="input-container">
             <input type="text" id="message-input" placeholder="Type your message here...">
@@ -62,7 +83,7 @@
         const messageInput = document.getElementById('message-input');
 
         // Add initial message
-        addMessage("Hello! I am the CC With AI Assistant. How can I help you today?", 'assistant');
+        addMessage("Hello it's Texas, I'm CCwithAi's Helpful assistant, what can I do for you today?", 'assistant');
 
         function addMessage(text, role) {
             const messageDiv = document.createElement('div');
